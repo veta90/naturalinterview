@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<record_update table="sys_security_acl_role">
+    <sys_security_acl_role action="INSERT_OR_UPDATE">
+        <sys_class_name>sys_security_acl_role</sys_class_name>
+        <sys_created_by>admin</sys_created_by>
+        <sys_created_on>2018-02-09 00:10:30</sys_created_on>
+        <sys_id>24a101a7dbcc5300ff4cf27eaf96191c</sys_id>
+        <sys_mod_count>0</sys_mod_count>
+        <sys_name>x_snc_naturalinter_product.x_snc_naturalinter.product_user</sys_name>
+        <sys_package display_value="NaturalInterview" source="x_snc_naturalinter">3298a0c3db005300ff4cf27eaf961912</sys_package>
+        <sys_policy/>
+        <sys_scope display_value="NaturalInterview">3298a0c3db005300ff4cf27eaf961912</sys_scope>
+        <sys_security_acl display_value="x_snc_naturalinter_product">2ca101a7dbcc5300ff4cf27eaf961919</sys_security_acl>
+        <sys_update_name>sys_security_acl_role_24a101a7dbcc5300ff4cf27eaf96191c</sys_update_name>
+        <sys_updated_by>admin</sys_updated_by>
+        <sys_updated_on>2018-02-09 00:10:30</sys_updated_on>
+        <sys_user_role display_value="x_snc_naturalinter.product_user" name="x_snc_naturalinter.product_user">18a141e3dbcc5300ff4cf27eaf96197d</sys_user_role>
+        <transaction_id/>
+    </sys_security_acl_role>
+</record_update>

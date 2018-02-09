@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<record_update>
+    <sys_documentation element="won" label="Won" language="en" table="x_snc_naturalinter_solution">
+        <sys_documentation action="INSERT_OR_UPDATE">
+            <element>won</element>
+            <help/>
+            <hint/>
+            <label>Won</label>
+            <language>en</language>
+            <name>x_snc_naturalinter_solution</name>
+            <plural>Wons</plural>
+            <sys_class_name>sys_documentation</sys_class_name>
+            <sys_created_by>admin</sys_created_by>
+            <sys_created_on>2018-02-08 22:28:39</sys_created_on>
+            <sys_id>b45aacabdb8c5300ff4cf27eaf961989</sys_id>
+            <sys_mod_count>0</sys_mod_count>
+            <sys_name>Won</sys_name>
+            <sys_package display_value="NaturalInterview" source="x_snc_naturalinter">3298a0c3db005300ff4cf27eaf961912</sys_package>
+            <sys_policy/>
+            <sys_scope display_value="NaturalInterview">3298a0c3db005300ff4cf27eaf961912</sys_scope>
+            <sys_update_name>sys_documentation_x_snc_naturalinter_solution_won_en</sys_update_name>
+            <sys_updated_by>admin</sys_updated_by>
+            <sys_updated_on>2018-02-08 22:28:39</sys_updated_on>
+            <url/>
+            <url_target/>
+        </sys_documentation>
+    </sys_documentation>
+</record_update>
