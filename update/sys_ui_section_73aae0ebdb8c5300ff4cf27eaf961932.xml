@@ -2,116 +2,88 @@
 <record_update>
     <sys_ui_section caption="" section_id="73aae0ebdb8c5300ff4cf27eaf961932" sys_domain="global" table="x_snc_naturalinter_solution" version="3" view="">
         <sys_ui_element action="INSERT_OR_UPDATE">
-            <element>.begin_split</element>
+            <element>number</element>
             <position>0</position>
             <sys_created_by>admin</sys_created_by>
-            <sys_created_on>2018-02-08 22:30:13</sys_created_on>
-            <sys_id>bbaae0ebdb8c5300ff4cf27eaf96193a</sys_id>
+            <sys_created_on>2018-02-10 21:48:17</sys_created_on>
+            <sys_id>4d443640db50d300ff4cf27eaf9619e1</sys_id>
             <sys_mod_count>0</sys_mod_count>
             <sys_ui_formatter/>
             <sys_ui_section caption="NULL" display_value="" name="x_snc_naturalinter_solution" sys_domain="global" view="Default view">73aae0ebdb8c5300ff4cf27eaf961932</sys_ui_section>
             <sys_updated_by>admin</sys_updated_by>
-            <sys_updated_on>2018-02-08 22:30:13</sys_updated_on>
-            <sys_user/>
-            <type>.begin_split</type>
-        </sys_ui_element>
-        <sys_ui_element action="INSERT_OR_UPDATE">
-            <element>number</element>
-            <position>1</position>
-            <sys_created_by>admin</sys_created_by>
-            <sys_created_on>2018-02-08 22:30:13</sys_created_on>
-            <sys_id>b3aae0ebdb8c5300ff4cf27eaf96193b</sys_id>
-            <sys_mod_count>0</sys_mod_count>
-            <sys_ui_formatter/>
-            <sys_ui_section caption="NULL" display_value="" name="x_snc_naturalinter_solution" sys_domain="global" view="Default view">73aae0ebdb8c5300ff4cf27eaf961932</sys_ui_section>
-            <sys_updated_by>admin</sys_updated_by>
-            <sys_updated_on>2018-02-08 22:30:13</sys_updated_on>
+            <sys_updated_on>2018-02-10 21:48:17</sys_updated_on>
             <sys_user/>
             <type/>
         </sys_ui_element>
         <sys_ui_element action="INSERT_OR_UPDATE">
             <element>name</element>
-            <position>2</position>
+            <position>1</position>
             <sys_created_by>admin</sys_created_by>
-            <sys_created_on>2018-02-08 22:30:13</sys_created_on>
-            <sys_id>37aae0ebdb8c5300ff4cf27eaf96193b</sys_id>
+            <sys_created_on>2018-02-10 21:48:17</sys_created_on>
+            <sys_id>cd443640db50d300ff4cf27eaf9619e1</sys_id>
             <sys_mod_count>0</sys_mod_count>
             <sys_ui_formatter/>
             <sys_ui_section caption="NULL" display_value="" name="x_snc_naturalinter_solution" sys_domain="global" view="Default view">73aae0ebdb8c5300ff4cf27eaf961932</sys_ui_section>
             <sys_updated_by>admin</sys_updated_by>
-            <sys_updated_on>2018-02-08 22:30:13</sys_updated_on>
-            <sys_user/>
-            <type/>
-        </sys_ui_element>
-        <sys_ui_element action="INSERT_OR_UPDATE">
-            <element>industry</element>
-            <position>3</position>
-            <sys_created_by>admin</sys_created_by>
-            <sys_created_on>2018-02-08 22:30:13</sys_created_on>
-            <sys_id>b7aae0ebdb8c5300ff4cf27eaf96193b</sys_id>
-            <sys_mod_count>0</sys_mod_count>
-            <sys_ui_formatter/>
-            <sys_ui_section caption="NULL" display_value="" name="x_snc_naturalinter_solution" sys_domain="global" view="Default view">73aae0ebdb8c5300ff4cf27eaf961932</sys_ui_section>
-            <sys_updated_by>admin</sys_updated_by>
-            <sys_updated_on>2018-02-08 22:30:13</sys_updated_on>
+            <sys_updated_on>2018-02-10 21:48:17</sys_updated_on>
             <sys_user/>
             <type/>
         </sys_ui_element>
         <sys_ui_element action="INSERT_OR_UPDATE">
             <element>.split</element>
-            <position>4</position>
+            <position>2</position>
             <sys_created_by>admin</sys_created_by>
-            <sys_created_on>2018-02-08 22:30:13</sys_created_on>
-            <sys_id>3baae0ebdb8c5300ff4cf27eaf96193b</sys_id>
+            <sys_created_on>2018-02-10 21:48:17</sys_created_on>
+            <sys_id>41443640db50d300ff4cf27eaf9619e2</sys_id>
             <sys_mod_count>0</sys_mod_count>
             <sys_ui_formatter/>
             <sys_ui_section caption="NULL" display_value="" name="x_snc_naturalinter_solution" sys_domain="global" view="Default view">73aae0ebdb8c5300ff4cf27eaf961932</sys_ui_section>
             <sys_updated_by>admin</sys_updated_by>
-            <sys_updated_on>2018-02-08 22:30:13</sys_updated_on>
+            <sys_updated_on>2018-02-10 21:48:17</sys_updated_on>
             <sys_user/>
             <type>.split</type>
         </sys_ui_element>
         <sys_ui_element action="INSERT_OR_UPDATE">
             <element>product</element>
-            <position>5</position>
+            <position>3</position>
             <sys_created_by>admin</sys_created_by>
-            <sys_created_on>2018-02-08 22:30:13</sys_created_on>
-            <sys_id>bbaae0ebdb8c5300ff4cf27eaf96193b</sys_id>
+            <sys_created_on>2018-02-10 21:48:17</sys_created_on>
+            <sys_id>c1443640db50d300ff4cf27eaf9619e2</sys_id>
             <sys_mod_count>0</sys_mod_count>
             <sys_ui_formatter/>
             <sys_ui_section caption="NULL" display_value="" name="x_snc_naturalinter_solution" sys_domain="global" view="Default view">73aae0ebdb8c5300ff4cf27eaf961932</sys_ui_section>
             <sys_updated_by>admin</sys_updated_by>
-            <sys_updated_on>2018-02-08 22:30:13</sys_updated_on>
+            <sys_updated_on>2018-02-10 21:48:17</sys_updated_on>
             <sys_user/>
             <type/>
         </sys_ui_element>
         <sys_ui_element action="INSERT_OR_UPDATE">
             <element>won</element>
-            <position>6</position>
+            <position>4</position>
             <sys_created_by>admin</sys_created_by>
-            <sys_created_on>2018-02-08 22:30:13</sys_created_on>
-            <sys_id>3faae0ebdb8c5300ff4cf27eaf96193b</sys_id>
+            <sys_created_on>2018-02-10 21:48:17</sys_created_on>
+            <sys_id>45443640db50d300ff4cf27eaf9619e2</sys_id>
             <sys_mod_count>0</sys_mod_count>
             <sys_ui_formatter/>
             <sys_ui_section caption="NULL" display_value="" name="x_snc_naturalinter_solution" sys_domain="global" view="Default view">73aae0ebdb8c5300ff4cf27eaf961932</sys_ui_section>
             <sys_updated_by>admin</sys_updated_by>
-            <sys_updated_on>2018-02-08 22:30:13</sys_updated_on>
+            <sys_updated_on>2018-02-10 21:48:17</sys_updated_on>
             <sys_user/>
             <type/>
         </sys_ui_element>
         <sys_ui_element action="INSERT_OR_UPDATE">
-            <element>.end_split</element>
-            <position>7</position>
+            <element>product.industry</element>
+            <position>5</position>
             <sys_created_by>admin</sys_created_by>
-            <sys_created_on>2018-02-08 22:30:13</sys_created_on>
-            <sys_id>bfaae0ebdb8c5300ff4cf27eaf96193b</sys_id>
+            <sys_created_on>2018-02-10 21:48:17</sys_created_on>
+            <sys_id>c5443640db50d300ff4cf27eaf9619e2</sys_id>
             <sys_mod_count>0</sys_mod_count>
             <sys_ui_formatter/>
             <sys_ui_section caption="NULL" display_value="" name="x_snc_naturalinter_solution" sys_domain="global" view="Default view">73aae0ebdb8c5300ff4cf27eaf961932</sys_ui_section>
             <sys_updated_by>admin</sys_updated_by>
-            <sys_updated_on>2018-02-08 22:30:13</sys_updated_on>
+            <sys_updated_on>2018-02-10 21:48:17</sys_updated_on>
             <sys_user/>
-            <type>.end_split</type>
+            <type/>
         </sys_ui_element>
         <sys_ui_section action="INSERT_OR_UPDATE">
             <caption/>

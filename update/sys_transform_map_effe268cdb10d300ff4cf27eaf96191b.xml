@@ -1,0 +1,71 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<record_update table="sys_transform_map">
+    <sys_transform_map action="INSERT_OR_UPDATE">
+        <active>true</active>
+        <copy_empty_fields>false</copy_empty_fields>
+        <enforce_mandatory_fields>No</enforce_mandatory_fields>
+        <name>Solutions won transform map</name>
+        <order>100</order>
+        <run_business_rules>true</run_business_rules>
+        <run_script>false</run_script>
+        <script><![CDATA[(function transformRow(source, target, map, log, isUpdate) {
+
+	//First, we get the industry object. Try first by looking up the object with that name in database. If non existant, add it.
+	var industryObject = new GlideRecord("x_snc_naturalinter_industry");
+	industryObject.addQuery("name",source.industry);
+	industryObject.query();
+	var industryID;
+	if (industryObject.next()){
+		industryID = industryObject.sys_id;
+		// We have the industry object now
+		log.info("Loaded industry: "+source.industry);
+	} else {
+	   // We will insert industry with the name
+		industryObject.initialize();
+		industryObject.newRecord();
+		industryObject.name = source.industry;
+		industryID = industryObject.insert();
+		log.info("Created industry: "+source.industry);
+	}
+	log.info("Industry ID: "+industryID);
+	
+	
+	//We do the same thing for product. We also connect the industry to the product the product is not yet connected
+	var productObject = new GlideRecord("x_snc_naturalinter_product");
+	productObject.addQuery("name",source.product);
+	productObject.query();
+	var productID;
+	if (productObject.next()){
+		productID = productObject.sys_id;
+		// We have the product object now
+	} else {
+	   // We will insert product with the name
+		productObject.initialize();
+		productObject.newRecord();
+		productObject.name = source.product;
+		productObject.industry = industryID;
+		productID = productObject.insert();
+		log.info("Created product: "+source.product);
+	}
+	log.info("product ID: "+productID);
+
+	//Now we connect the target with the product
+	target.product = productID;
+	
+})(source, target, map, log, action==="update");]]></script>
+        <source_table>x_snc_naturalinter_natural_solutions</source_table>
+        <sys_class_name>sys_transform_map</sys_class_name>
+        <sys_created_by>admin</sys_created_by>
+        <sys_created_on>2018-02-10 21:25:15</sys_created_on>
+        <sys_id>effe268cdb10d300ff4cf27eaf96191b</sys_id>
+        <sys_mod_count>1</sys_mod_count>
+        <sys_name>Solutions won transform map</sys_name>
+        <sys_package display_value="NaturalInterview" source="x_snc_naturalinter">3298a0c3db005300ff4cf27eaf961912</sys_package>
+        <sys_policy/>
+        <sys_scope display_value="NaturalInterview">3298a0c3db005300ff4cf27eaf961912</sys_scope>
+        <sys_update_name>sys_transform_map_effe268cdb10d300ff4cf27eaf96191b</sys_update_name>
+        <sys_updated_by>admin</sys_updated_by>
+        <sys_updated_on>2018-02-10 21:25:47</sys_updated_on>
+        <target_table>x_snc_naturalinter_solution</target_table>
+    </sys_transform_map>
+</record_update>
