@@ -1,7 +1,10 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <database>
     <element label="Industry" mandatory="true" max_length="40" name="x_snc_naturalinter_industry" type="collection">
-        <element display="true" label="Name" mandatory="true" max_length="40" name="name" type="string"/>
+        <element display="true" label="Name" mandatory="true" max_length="40" name="name" type="string" unique="true"/>
         <element attributes="ignore_filter_on_new=true" default="javascript:global.getNextObjNumberPadded();" label="Number" mandatory="true" max_length="40" name="number" read_only="true" type="string"/>
+        <index name="index">
+            <element name="name"/>
+        </index>
     </element>
 </database>

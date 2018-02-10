@@ -1,0 +1,66 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<record_update table="sys_transform_script">
+    <sys_transform_script action="INSERT_OR_UPDATE">
+        <active>true</active>
+        <map display_value="Solutions transform map">102e5604db10d300ff4cf27eaf961966</map>
+        <order>100</order>
+        <script><![CDATA[(function transformRow(source, target, map, log, isUpdate) {
+	log.info("TRYING TO TRANSFORM SOURCE: " + source.u_industry + " " + source.u_product);
+	//First, we get the industry object. Try first by looking up the object with that name in database. If non existant, add it.
+	var industryObject = new GlideRecord("x_snc_naturalinter_industry");
+	industryObject.addQuery("name",source.u_industry);
+	industryObject.query();
+	var industryID;
+	if (industryObject.next()){
+		industryID = industryObject.sys_id;
+		// We have the industry object now
+		log.info("Loaded industry: "+industryObject.name);
+	} else {
+	   // We will insert industry with the name
+		industryObject.initialize();
+		industryObject.newRecord();
+		industryObject.name = source.u_industry;
+		industryID = industryObject.insert();
+		log.info("Created industry: "+industryObject.name);
+	}
+	log.info("Industry ID: "+industryID);
+	
+	
+	//We do the same thing for product. We also connect the industry to the product the product is not yet connected
+	var productObject = new GlideRecord("x_snc_naturalinter_product");
+	productObject.addQuery("name",source.u_product);
+	productObject.query();
+	var productID;
+	if (productObject.next()){
+		productID = productObject.sys_id;
+		// We have the product object now
+	} else {
+	   // We will insert product with the name
+		productObject.initialize();
+		productObject.newRecord();
+		productObject.name = source.u_product;
+		productObject.industry = industryID;
+		productID = productObject.insert();
+		log.info("Created product: "+productObject.name);
+	}
+	log.info("product ID: "+productID);
+
+	//Now we connect the target with the product
+	target.product = productID;
+	
+})(source, target, map, log, action==="update");]]></script>
+        <sys_class_name>sys_transform_script</sys_class_name>
+        <sys_created_by>admin</sys_created_by>
+        <sys_created_on>2018-02-10 20:46:05</sys_created_on>
+        <sys_id>59f52608db10d300ff4cf27eaf96193f</sys_id>
+        <sys_mod_count>4</sys_mod_count>
+        <sys_name>onBefore</sys_name>
+        <sys_package display_value="NaturalInterview" source="x_snc_naturalinter">3298a0c3db005300ff4cf27eaf961912</sys_package>
+        <sys_policy/>
+        <sys_scope display_value="NaturalInterview">3298a0c3db005300ff4cf27eaf961912</sys_scope>
+        <sys_update_name>sys_transform_script_59f52608db10d300ff4cf27eaf96193f</sys_update_name>
+        <sys_updated_by>admin</sys_updated_by>
+        <sys_updated_on>2018-02-10 21:05:26</sys_updated_on>
+        <when>onBefore</when>
+    </sys_transform_script>
+</record_update>

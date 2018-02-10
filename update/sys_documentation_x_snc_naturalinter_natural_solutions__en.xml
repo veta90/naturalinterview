@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<record_update>
+    <sys_documentation element="" label="Natural Solutions Import" language="en" table="x_snc_naturalinter_natural_solutions">
+        <sys_documentation action="INSERT_OR_UPDATE">
+            <element/>
+            <help/>
+            <hint/>
+            <label>Natural Solutions Import</label>
+            <language>en</language>
+            <name>x_snc_naturalinter_natural_solutions</name>
+            <plural>Natural Solutions Imports</plural>
+            <sys_class_name>sys_documentation</sys_class_name>
+            <sys_created_by>admin</sys_created_by>
+            <sys_created_on>2018-02-10 18:04:54</sys_created_on>
+            <sys_id>24218a04dbdc9300ff4cf27eaf96191f</sys_id>
+            <sys_mod_count>1</sys_mod_count>
+            <sys_name>Natural Solutions Import</sys_name>
+            <sys_package display_value="NaturalInterview" source="x_snc_naturalinter">3298a0c3db005300ff4cf27eaf961912</sys_package>
+            <sys_policy/>
+            <sys_scope display_value="NaturalInterview">3298a0c3db005300ff4cf27eaf961912</sys_scope>
+            <sys_update_name>sys_documentation_x_snc_naturalinter_natural_solutions__en</sys_update_name>
+            <sys_updated_by>admin</sys_updated_by>
+            <sys_updated_on>2018-02-10 18:24:43</sys_updated_on>
+            <url/>
+            <url_target/>
+        </sys_documentation>
+    </sys_documentation>
+</record_update>

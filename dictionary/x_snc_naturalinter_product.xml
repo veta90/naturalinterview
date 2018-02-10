@@ -1,10 +1,13 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <database>
     <element label="Product" max_length="40" name="x_snc_naturalinter_product" type="collection">
-        <element display="true" label="Industry" mandatory="true" max_length="32" name="industry" reference="x_snc_naturalinter_industry" type="reference"/>
-        <element label="Name" mandatory="true" max_length="40" name="name" type="string"/>
+        <element label="Industry" mandatory="true" max_length="32" name="industry" reference="x_snc_naturalinter_industry" type="reference"/>
+        <element display="true" label="Name" mandatory="true" max_length="40" name="name" type="string" unique="true"/>
         <element attributes="ignore_filter_on_new=true" default="javascript:global.getNextObjNumberPadded();" label="Number" mandatory="true" max_length="40" name="number" read_only="true" type="string"/>
         <index name="index">
+            <element name="name"/>
+        </index>
+        <index name="index2">
             <element name="industry"/>
         </index>
     </element>

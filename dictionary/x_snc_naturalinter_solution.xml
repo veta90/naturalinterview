@@ -1,9 +1,15 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <database>
     <element label="Solution" max_length="40" name="x_snc_naturalinter_solution" type="collection">
-        <element label="Product" mandatory="true" max_length="40" name="industry" reference="x_snc_naturalinter_product" type="reference"/>
-        <element label="Name" mandatory="true" max_length="40" name="name" type="string"/>
+        <element label="Name" mandatory="true" max_length="40" name="name" type="string" unique="true"/>
         <element attributes="ignore_filter_on_new=true" default="javascript:global.getNextObjNumberPadded();" label="Number" mandatory="true" max_length="40" name="number" read_only="true" type="string"/>
-        <element display="true" label="Won" max_length="40" name="won" type="boolean"/>
+        <element display="true" label="Product" mandatory="true" max_length="32" name="product" reference="x_snc_naturalinter_product" type="reference"/>
+        <element label="Won" max_length="40" name="won" type="boolean"/>
+        <index name="index">
+            <element name="product"/>
+        </index>
+        <index name="index2">
+            <element name="name"/>
+        </index>
     </element>
 </database>

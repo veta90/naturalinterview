@@ -1,21 +1,16 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <record_update>
-    <sys_dictionary action="INSERT_OR_UPDATE" element="industry" table="x_snc_naturalinter_solution">
+    <sys_dictionary action="INSERT_OR_UPDATE" element="" extends="sys_import_set_row" table="x_snc_naturalinter_natural_solutions">
         <active>true</active>
         <array>false</array>
         <array_denormalized>false</array_denormalized>
         <attributes/>
         <audit>false</audit>
-        <calculation><![CDATA[(function calculatedFieldValue(current) {
-
-	// Add your code here
-	return '';  // return the calculated value
-
-})(current);]]></calculation>
-        <choice/>
+        <calculation/>
+        <choice>0</choice>
         <choice_field/>
         <choice_table/>
-        <column_label>Product</column_label>
+        <column_label/>
         <comments/>
         <create_roles/>
         <default_value/>
@@ -28,20 +23,20 @@
         <dynamic_creation_script/>
         <dynamic_default_value/>
         <dynamic_ref_qual/>
-        <element>industry</element>
+        <element/>
         <element_reference>false</element_reference>
         <foreign_database/>
         <function_definition/>
         <function_field>false</function_field>
-        <internal_type display_value="Reference">reference</internal_type>
-        <mandatory>true</mandatory>
+        <internal_type display_value="Collection">collection</internal_type>
+        <mandatory>false</mandatory>
         <max_length>40</max_length>
-        <name>x_snc_naturalinter_solution</name>
+        <name>x_snc_naturalinter_natural_solutions</name>
         <next_element/>
         <primary>false</primary>
         <read_only>false</read_only>
         <read_roles/>
-        <reference display_value="" name="x_snc_naturalinter_product">x_snc_naturalinter_product</reference>
+        <reference/>
         <reference_cascade_rule/>
         <reference_floats>false</reference_floats>
         <reference_key/>
@@ -53,16 +48,16 @@
         <staged>false</staged>
         <sys_class_name>sys_dictionary</sys_class_name>
         <sys_created_by>admin</sys_created_by>
-        <sys_created_on>2018-02-08 22:28:36</sys_created_on>
-        <sys_id>a8e6a06bdb8c5300ff4cf27eaf96196f</sys_id>
-        <sys_mod_count>5</sys_mod_count>
-        <sys_name>Product</sys_name>
+        <sys_created_on>2018-02-10 18:04:54</sys_created_on>
+        <sys_id>ec218a04dbdc9300ff4cf27eaf96191d</sys_id>
+        <sys_mod_count>0</sys_mod_count>
+        <sys_name>x_snc_naturalinter_natural_solutions</sys_name>
         <sys_package display_value="NaturalInterview" source="x_snc_naturalinter">3298a0c3db005300ff4cf27eaf961912</sys_package>
         <sys_policy/>
         <sys_scope display_value="NaturalInterview">3298a0c3db005300ff4cf27eaf961912</sys_scope>
-        <sys_update_name>sys_dictionary_x_snc_naturalinter_solution_industry</sys_update_name>
+        <sys_update_name>sys_dictionary_x_snc_naturalinter_natural_solutions_null</sys_update_name>
         <sys_updated_by>admin</sys_updated_by>
-        <sys_updated_on>2018-02-09 00:13:13</sys_updated_on>
+        <sys_updated_on>2018-02-10 18:04:54</sys_updated_on>
         <table_reference>false</table_reference>
         <text_index>false</text_index>
         <unique>false</unique>
