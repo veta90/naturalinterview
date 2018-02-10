@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<database>
+    <element extends="sys_import_set_row" label="JSON source test" max_length="40" name="x_snc_naturalinter_natural_staging" type="collection">
+        <element attributes="import_attribute_name=industry,edge_encryption_enabled=true" label="industry" max_length="40" name="u_industry" type="string"/>
+        <element attributes="import_attribute_name=name,edge_encryption_enabled=true" label="name" max_length="40" name="u_name" type="string"/>
+        <element attributes="import_attribute_name=product,edge_encryption_enabled=true" label="product" max_length="40" name="u_product" type="string"/>
+    </element>
+</database>

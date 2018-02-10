@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<record_update table="sys_metadata_link">
+    <sys_metadata_link action="INSERT_OR_UPDATE">
+        <directory>update</directory>
+        <documentkey>df223200db50d300ff4cf27eaf9619c0</documentkey>
+        <payload><![CDATA[<?xml version="1.0" encoding="UTF-8"?>
+<record_update table="x_snc_naturalinter_solution">
+    <x_snc_naturalinter_solution action="INSERT_OR_UPDATE">
+        <name>Solution Wins 3</name>
+        <number>SOL0001151</number>
+        <product display_value="Facilities Service Management">3431b6ccdb10d300ff4cf27eaf96198f</product>
+        <sys_created_by>admin</sys_created_by>
+        <sys_created_on>2018-02-10 21:39:10</sys_created_on>
+        <sys_id>df223200db50d300ff4cf27eaf9619c0</sys_id>
+        <sys_mod_count>0</sys_mod_count>
+        <sys_updated_by>admin</sys_updated_by>
+        <sys_updated_on>2018-02-10 21:39:10</sys_updated_on>
+        <won>true</won>
+    </x_snc_naturalinter_solution>
+</record_update>
+]]></payload>
+        <sys_class_name>sys_metadata_link</sys_class_name>
+        <sys_created_by>admin</sys_created_by>
+        <sys_created_on>2018-02-10 23:43:07</sys_created_on>
+        <sys_id>7a8e078cdb50d300ff4cf27eaf961952</sys_id>
+        <sys_mod_count>0</sys_mod_count>
+        <sys_name>Facilities Service Management</sys_name>
+        <sys_package display_value="NaturalInterview" source="x_snc_naturalinter">3298a0c3db005300ff4cf27eaf961912</sys_package>
+        <sys_policy/>
+        <sys_scope display_value="NaturalInterview">3298a0c3db005300ff4cf27eaf961912</sys_scope>
+        <sys_update_name>sys_metadata_link_7a8e078cdb50d300ff4cf27eaf961952</sys_update_name>
+        <sys_updated_by>admin</sys_updated_by>
+        <sys_updated_on>2018-02-10 23:43:07</sys_updated_on>
+        <tablename>x_snc_naturalinter_solution</tablename>
+    </sys_metadata_link>
+</record_update>

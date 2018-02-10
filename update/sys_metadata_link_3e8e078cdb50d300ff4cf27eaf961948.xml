@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<record_update table="sys_metadata_link">
+    <sys_metadata_link action="INSERT_OR_UPDATE">
+        <directory>update</directory>
+        <documentkey>9b223200db50d300ff4cf27eaf9619c5</documentkey>
+        <payload><![CDATA[<?xml version="1.0" encoding="UTF-8"?>
+<record_update table="x_snc_naturalinter_solution">
+    <x_snc_naturalinter_solution action="INSERT_OR_UPDATE">
+        <name>Solution Wins 8</name>
+        <number>SOL0001156</number>
+        <product display_value="IT Governance, Risk, and Compliance">70313accdb10d300ff4cf27eaf9619c3</product>
+        <sys_created_by>admin</sys_created_by>
+        <sys_created_on>2018-02-10 21:39:10</sys_created_on>
+        <sys_id>9b223200db50d300ff4cf27eaf9619c5</sys_id>
+        <sys_mod_count>0</sys_mod_count>
+        <sys_updated_by>admin</sys_updated_by>
+        <sys_updated_on>2018-02-10 21:39:10</sys_updated_on>
+        <won>true</won>
+    </x_snc_naturalinter_solution>
+</record_update>
+]]></payload>
+        <sys_class_name>sys_metadata_link</sys_class_name>
+        <sys_created_by>admin</sys_created_by>
+        <sys_created_on>2018-02-10 23:43:06</sys_created_on>
+        <sys_id>3e8e078cdb50d300ff4cf27eaf961948</sys_id>
+        <sys_mod_count>0</sys_mod_count>
+        <sys_name>IT Governance, Risk, and Compliance</sys_name>
+        <sys_package display_value="NaturalInterview" source="x_snc_naturalinter">3298a0c3db005300ff4cf27eaf961912</sys_package>
+        <sys_policy/>
+        <sys_scope display_value="NaturalInterview">3298a0c3db005300ff4cf27eaf961912</sys_scope>
+        <sys_update_name>sys_metadata_link_3e8e078cdb50d300ff4cf27eaf961948</sys_update_name>
+        <sys_updated_by>admin</sys_updated_by>
+        <sys_updated_on>2018-02-10 23:43:06</sys_updated_on>
+        <tablename>x_snc_naturalinter_solution</tablename>
+    </sys_metadata_link>
+</record_update>
