@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<record_update table="sp_widget">
+    <sp_widget action="INSERT_OR_UPDATE">
+        <category>custom</category>
+        <client_script><![CDATA[function() {	
+	var c = this;		
+}]]></client_script>
+        <controller_as>c</controller_as>
+        <css>span {
+color: #6f0004;
+}
+.myWelcome{
+}</css>
+        <data_table>sp_instance</data_table>
+        <demo_data>{
+	"data": {
+		"sometext": "world"
+	}
+}</demo_data>
+        <description/>
+        <docs/>
+        <field_list/>
+        <has_preview>true</has_preview>
+        <id>welcome_user_widget</id>
+        <internal>false</internal>
+        <link/>
+        <name>Welcome User Widget</name>
+        <option_schema/>
+        <public>true</public>
+        <roles/>
+        <script><![CDATA[(function() {  /* populate the 'data' object */  /* e.g., data.table = $sp.getValue('table'); */})();]]></script>
+        <servicenow>false</servicenow>
+        <sys_class_name>sp_widget</sys_class_name>
+        <sys_created_by>admin</sys_created_by>
+        <sys_created_on>2018-02-11 03:26:09</sys_created_on>
+        <sys_id>d29188d8dbd0d300ff4cf27eaf9619aa</sys_id>
+        <sys_mod_count>22</sys_mod_count>
+        <sys_name>Welcome User Widget</sys_name>
+        <sys_package display_value="NaturalInterview" source="x_snc_naturalinter">3298a0c3db005300ff4cf27eaf961912</sys_package>
+        <sys_policy/>
+        <sys_scope display_value="NaturalInterview">3298a0c3db005300ff4cf27eaf961912</sys_scope>
+        <sys_update_name>sp_widget_d29188d8dbd0d300ff4cf27eaf9619aa</sys_update_name>
+        <sys_updated_by>admin</sys_updated_by>
+        <sys_updated_on>2018-02-11 03:53:43</sys_updated_on>
+        <template><![CDATA[<div class="myWelcome">
+ ${Welcome, } <span>{{ ::user.first_name }}! </span> ${What would you like to accomplish today?}
+</div>]]></template>
+    </sp_widget>
+</record_update>
