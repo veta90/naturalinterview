@@ -5,9 +5,17 @@
         <client_script><![CDATA[function() {
   /* widget controller */
   var c = this;
+	c.data.sources = ["Solution","Solution Win"];
+	c.data.industries = ["any industry"];
+	c.data.industries = c.data.industries.concat(c.data.serverIndustries);
+	c.data.products = ["any product"];
+	c.data.products = c.data.products.concat(c.data.serverProducts);
+	//hack for anguar inicialization of form after load
+	setTimeout(function(){
+			var nlform = new NLForm( document.getElementById( 'nl-form' ) );
+	},1);
 	
-	
-	
+	console.log(c.data.industries);
 	
 	//Code drop
 	var document = window.document;
@@ -175,7 +183,6 @@
 
 	// add to global namespace
 	window.NLForm = NLForm;
-		var nlform = new NLForm( document.getElementById( 'nl-form' ) );
 
 } ]]></client_script>
         <controller_as>c</controller_as>
@@ -621,40 +628,55 @@ a:active {
         <option_schema/>
         <public>false</public>
         <roles/>
-        <script><![CDATA[(function() {  /* populate the 'data' object */  /* e.g., data.table = $sp.getValue('table'); */})();]]></script>
+        <script><![CDATA[(function() {
+  /* populate the 'data' object */
+  /* e.g., data.table = $sp.getValue('table'); */
+	data.serverIndustries=[];
+	var gr = new GlideRecord('x_snc_naturalinter_industry');
+	gr.query();
+  while (gr.next()){
+		data.serverIndustries.push(""+gr.name);
+		gs.info(gr.name);
+	}
+	
+	data.serverProducts=[];
+	gr = new GlideRecord('x_snc_naturalinter_product');
+	gr.query();
+  while (gr.next()){
+		data.serverProducts.push(""+gr.name);
+		gs.info(gr.name);
+	}
+	
+	
+})();]]></script>
         <servicenow>false</servicenow>
         <sys_class_name>sp_widget</sys_class_name>
         <sys_created_by>admin</sys_created_by>
         <sys_created_on>2018-02-11 16:40:14</sys_created_on>
         <sys_id>8257b6dcdb18d300ff4cf27eaf9619e1</sys_id>
-        <sys_mod_count>50</sys_mod_count>
+        <sys_mod_count>102</sys_mod_count>
         <sys_name>Natural Language Search Form</sys_name>
         <sys_package display_value="NaturalInterview" source="x_snc_naturalinter">3298a0c3db005300ff4cf27eaf961912</sys_package>
         <sys_policy/>
         <sys_scope display_value="NaturalInterview">3298a0c3db005300ff4cf27eaf961912</sys_scope>
         <sys_update_name>sp_widget_8257b6dcdb18d300ff4cf27eaf9619e1</sys_update_name>
         <sys_updated_by>admin</sys_updated_by>
-        <sys_updated_on>2018-02-12 00:41:17</sys_updated_on>
+        <sys_updated_on>2018-02-12 02:57:36</sys_updated_on>
         <template><![CDATA[<div class="container demo-1">
 			<div class="main clearfix">
-				<form id="nl-form" class="nl-form">
-					I need a 
-					<select>
-						<option value="1" selected>solution</option>
-						<option value="2">solution win</option>
+        <form id="nl-form" class="nl-form">
+					I need a
+          <select>
+            <!-- Hardcoded -->
+            <option ng-repeat="source in data.sources">{{source}}</option>
 					</select>
 					 for 
 					<select>
-						<option value="1" selected>any industry</option>
-						<option value="2">ind1</option>
-						<option value="3">ind2</option>
+            <option ng-repeat="industry in data.industries">{{industry}}</option>
 					</select>
 					and 
 					<select>
-						<option value="1" selected>any product</option>
-					 	<option value="1">p1</option>
-					 	<option value="2">p2.</option>
-					 	<option value="3">p3</option>
+            <option ng-repeat="product in data.products">{{product}}</option>
 					</select>
 					<div class="nl-submit-wrap">
 						<button class="nl-submit" type="submit">Find it!</button>
