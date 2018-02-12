@@ -2,17 +2,57 @@
 <record_update table="sp_widget">
     <sp_widget action="INSERT_OR_UPDATE">
         <category>custom</category>
-        <client_script><![CDATA[function() {
+        <client_script><![CDATA[function($scope) {
   /* widget controller */
   var c = this;
-	c.data.sources = ["Solution","Solution Win"];
+	$scope.updateSelect = function() {
+		console.log($scope.selected);
+		filterProductsBySelectedIndustry();
+	}
+	$scope.search = function() {
+		console.log('searching',$scope.selected);
+		var url='/x_snc_naturalinter_solution_list.do?sysparm_query=won='
+		var won=$scope.selected.source!=c.data.sources[0];
+		url+=won;
+		if ($scope.selected.industry!=c.data.industries[0])
+			url+='^product.industry.name='+$scope.selected.industry;
+		if ($scope.selected.product!=c.data.products[0])
+			url+='^product.name='+$scope.selected.product.name;
+		window.open(url, '_blank');
+
+	}
+	
+	function filterProductsBySelectedIndustry() {
+		if ($scope.selected.industry == c.data.industries[0]){
+			c.data.products=allProducts;
+		} else {
+			c.data.products = [allProducts[0]];
+			allProducts.forEach(function(element) {
+					if (element.industry==$scope.selected.industry){
+						c.data.products.push(element);
+					}
+			});
+		}
+		$scope.selected.product=c.data.products[0];
+		console.log('new products: ', c.data.products);
+	}
+	
 	c.data.industries = ["any industry"];
-	c.data.industries = c.data.industries.concat(c.data.serverIndustries);
 	c.data.products = [{name:"any product","industry": "*"}];
+	c.data.sources = ["Solution","Solution Win"];
+	$scope.selected = {};
+	$scope.selected.industry = c.data.industries[0];
+	$scope.selected.product = c.data.products[0];
+	$scope.selected.source = c.data.sources[0];
+	
+	
+	c.data.industries = c.data.industries.concat(c.data.serverIndustries);
 	c.data.products = c.data.products.concat(c.data.serverProducts);
+	var allProducts = c.data.products;
+	
 	//hack for anguar inicialization of form after load
 	setTimeout(function(){
-			var nlform = new NLForm( document.getElementById( 'nl-form' ) );
+			//var nlform = new NLForm( document.getElementById( 'nl-form' ) );
 	},1);
 	
 	console.log(c.data.industries);
@@ -644,7 +684,7 @@ a:active {
 	gr = new GlideRecord('x_snc_naturalinter_product');
 	gr.query();
   while (gr.next()){
-		data.serverProducts.push({name: ""+gr.name, industry: gr.industry.name});
+		data.serverProducts.push({name: ""+gr.name, industry: ""+gr.industry.name});
 		gs.info(gr.name);
 	}
 	
@@ -655,33 +695,31 @@ a:active {
         <sys_created_by>admin</sys_created_by>
         <sys_created_on>2018-02-11 16:40:14</sys_created_on>
         <sys_id>8257b6dcdb18d300ff4cf27eaf9619e1</sys_id>
-        <sys_mod_count>112</sys_mod_count>
+        <sys_mod_count>214</sys_mod_count>
         <sys_name>Natural Language Search Form</sys_name>
         <sys_package display_value="NaturalInterview" source="x_snc_naturalinter">3298a0c3db005300ff4cf27eaf961912</sys_package>
         <sys_policy/>
         <sys_scope display_value="NaturalInterview">3298a0c3db005300ff4cf27eaf961912</sys_scope>
         <sys_update_name>sp_widget_8257b6dcdb18d300ff4cf27eaf9619e1</sys_update_name>
         <sys_updated_by>admin</sys_updated_by>
-        <sys_updated_on>2018-02-12 05:22:01</sys_updated_on>
+        <sys_updated_on>2018-02-12 07:52:49</sys_updated_on>
         <template><![CDATA[<div class="container demo-1">
 			<div class="main clearfix">
         <form id="nl-form" class="nl-form">
 					I need a
-          <select>
-            <!-- Hardcoded -->
-            <option ng-repeat="source in data.sources">{{source}}</option>
-					</select>
+          <select ng-options="source for source in data.sources" 
+                  ng-model='selected.source'>
+					</select> 
 					 for 
-					<select>
-            <option ng-repeat="industry in data.industries">{{industry}}</option>
+					<select ng-options="industry for industry in data.industries" ng-model='selected.industry' ng-change="updateSelect(1);">
 					</select>
 					and 
-					<select>
-            <option ng-repeat="product in data.products">{{product.name}}</option>
+					<select ng-options="product as product.name for product in data.products" ng-model='selected.product'>
 					</select>
 					<div class="nl-submit-wrap">
             <br/>
-						<button class="nl-submit" type="submit">Find it!</button>
+
+						<button class="nl-submit" ng-click="search();">Find it!</button>
 					</div>
 					<div class="nl-overlay"></div>
 				</form>
