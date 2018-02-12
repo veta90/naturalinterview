@@ -41,29 +41,41 @@ a {
         <sys_created_by>admin</sys_created_by>
         <sys_created_on>2018-02-07 13:59:31</sys_created_on>
         <sys_id>af4f914fdb405300ff4cf27eaf961947</sys_id>
-        <sys_mod_count>23</sys_mod_count>
+        <sys_mod_count>31</sys_mod_count>
         <sys_name>Natural Footer</sys_name>
         <sys_package display_value="NaturalInterview" source="x_snc_naturalinter">3298a0c3db005300ff4cf27eaf961912</sys_package>
         <sys_policy/>
         <sys_scope display_value="NaturalInterview">3298a0c3db005300ff4cf27eaf961912</sys_scope>
         <sys_update_name>sp_header_footer_af4f914fdb405300ff4cf27eaf961947</sys_update_name>
         <sys_updated_by>admin</sys_updated_by>
-        <sys_updated_on>2018-02-11 04:55:40</sys_updated_on>
+        <sys_updated_on>2018-02-12 05:10:14</sys_updated_on>
         <template><![CDATA[ <div class="sample-footer">
    <div class="container">
      <row>
      <column class="col-md-4">
        <ul>
-       <li>${Solutions}</li>  
-       <li>${Solution Wins}</li>  
-       <li>${People}</li>  
-       <li>${Enablement}</li>  
+       <li>
+        <a target="_blank" href="/x_snc_naturalinter_solution_list.do">${Solutions}</a>
+			 </li>  
+       <li>
+	      <a target="_blank" href="/x_snc_naturalinter_solution_list.do?sysparm_query=won=true">${Solution Wins}</a>  
+       </li>  
+       <li>
+     		<a target="_blank" href="/sys_user_list.do">${People}</a>  
+			 </li>  
+       <li>
+      	<a target="_blank" href="https://servicenow.com">${Enablement}</a>  
+			</li>  
        </ul>
       </column>
      <column class="col-md-4">
        <ul>
-       <li>${Standard View}</li>  
-       <li>${Demo Center}</li>  
+       <li>
+				<a target="_blank" href="/natural">${Standard View}</a>  
+       </li>  
+       <li>
+         	<a target="_blank" href="/demo">${Demo Center}</a>  
+       </li>  
        </ul>
       </column>
      <column class="col-md-4">

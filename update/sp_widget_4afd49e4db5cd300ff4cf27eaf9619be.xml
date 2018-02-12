@@ -39,24 +39,24 @@ a {
         <sys_created_by>admin</sys_created_by>
         <sys_created_on>2018-02-12 03:38:19</sys_created_on>
         <sys_id>4afd49e4db5cd300ff4cf27eaf9619be</sys_id>
-        <sys_mod_count>40</sys_mod_count>
+        <sys_mod_count>41</sys_mod_count>
         <sys_name>Natural Table Manipulator</sys_name>
         <sys_package display_value="NaturalInterview" source="x_snc_naturalinter">3298a0c3db005300ff4cf27eaf961912</sys_package>
         <sys_policy/>
         <sys_scope display_value="NaturalInterview">3298a0c3db005300ff4cf27eaf961912</sys_scope>
         <sys_update_name>sp_widget_4afd49e4db5cd300ff4cf27eaf9619be</sys_update_name>
         <sys_updated_by>admin</sys_updated_by>
-        <sys_updated_on>2018-02-12 04:20:48</sys_updated_on>
+        <sys_updated_on>2018-02-12 05:12:06</sys_updated_on>
         <template><![CDATA[<div>
 <!-- your widget template -->
   <img src="/{{::options.icon}}"/>
  	<br/>
-  <a href="/{{::options.table_source}}.do?sys_id=-1&sysparm_query={{::options.extra_url_filter}}">
+  <a target="_blank" href="/{{::options.table_source}}.do?sys_id=-1&sysparm_query={{::options.extra_url_filter}}">
     <h1>   
    		Submit a {{::options.name}}
 		</h1>
   </a>
-  <a href="/{{::options.table_source}}_list.do?sysparm_query={{::options.extra_url_filter}}">
+  <a target="_blank" href="/{{::options.table_source}}_list.do?sysparm_query={{::options.extra_url_filter}}">
 		<h1>View my {{::options.name}}s</h1>
   </a>
 </div>]]></template>
