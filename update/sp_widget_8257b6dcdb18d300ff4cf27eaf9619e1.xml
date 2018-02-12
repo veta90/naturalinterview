@@ -1,0 +1,667 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<record_update table="sp_widget">
+    <sp_widget action="INSERT_OR_UPDATE">
+        <category>custom</category>
+        <client_script><![CDATA[function() {
+  /* widget controller */
+  var c = this;
+	
+	
+	
+	
+	//Code drop
+	var document = window.document;
+	if (!String.prototype.trim) {
+		String.prototype.trim=function(){return this.replace(/^\s+|\s+$/g, '');};
+	}
+
+	function NLForm( el ) {	
+		this.el = el;
+		this.overlay = this.el.querySelector( '.nl-overlay' );
+		this.fields = [];
+		this.fldOpen = -1;
+		this._init();
+	}
+
+	NLForm.prototype = {
+		_init : function() {
+			var self = this;
+			Array.prototype.slice.call( this.el.querySelectorAll( 'select' ) ).forEach( function( el, i ) {
+				self.fldOpen++;
+				self.fields.push( new NLField( self, el, 'dropdown', self.fldOpen ) );
+			} );
+			Array.prototype.slice.call( this.el.querySelectorAll( 'input' ) ).forEach( function( el, i ) {
+				self.fldOpen++;
+				self.fields.push( new NLField( self, el, 'input', self.fldOpen ) );
+			} );
+			this.overlay.addEventListener( 'click', function(ev) { self._closeFlds(); } );
+			this.overlay.addEventListener( 'touchstart', function(ev) { self._closeFlds(); } );
+		},
+		_closeFlds : function() {
+			if( this.fldOpen !== -1 ) {
+				this.fields[ this.fldOpen ].close();
+			}
+		}
+	}
+
+	function NLField( form, el, type, idx ) {
+		this.form = form;
+		this.elOriginal = el;
+		this.pos = idx;
+		this.type = type;
+		this._create();
+		this._initEvents();
+	}
+
+	NLField.prototype = {
+		_create : function() {
+			if( this.type === 'dropdown' ) {
+				this._createDropDown();	
+			}
+			else if( this.type === 'input' ) {
+				this._createInput();	
+			}
+		},
+		_createDropDown : function() {
+			var self = this;
+			this.fld = document.createElement( 'div' );
+			this.fld.className = 'nl-field nl-dd';
+			this.toggle = document.createElement( 'a' );
+			this.toggle.innerHTML = this.elOriginal.options[ this.elOriginal.selectedIndex ].innerHTML;
+			this.toggle.className = 'nl-field-toggle';
+			this.optionsList = document.createElement( 'ul' );
+			var ihtml = '';
+			Array.prototype.slice.call( this.elOriginal.querySelectorAll( 'option' ) ).forEach( function( el, i ) {
+				ihtml += self.elOriginal.selectedIndex === i ? '<li class="nl-dd-checked">' + el.innerHTML + '</li>' : '<li>' + el.innerHTML + '</li>';
+				// selected index value
+				if( self.elOriginal.selectedIndex === i ) {
+					self.selectedIdx = i;
+				}
+			} );
+			this.optionsList.innerHTML = ihtml;
+			this.fld.appendChild( this.toggle );
+			this.fld.appendChild( this.optionsList );
+			this.elOriginal.parentNode.insertBefore( this.fld, this.elOriginal );
+			this.elOriginal.style.display = 'none';
+		},
+		_createInput : function() {
+			var self = this;
+			this.fld = document.createElement( 'div' );
+			this.fld.className = 'nl-field nl-ti-text';
+			this.toggle = document.createElement( 'a' );
+			this.toggle.innerHTML = this.elOriginal.getAttribute( 'placeholder' );
+			this.toggle.className = 'nl-field-toggle';
+			this.optionsList = document.createElement( 'ul' );
+			this.getinput = document.createElement( 'input' );
+			this.getinput.setAttribute( 'type', 'text' );
+			this.getinput.setAttribute( 'placeholder', this.elOriginal.getAttribute( 'placeholder' ) );
+			this.getinputWrapper = document.createElement( 'li' );
+			this.getinputWrapper.className = 'nl-ti-input';
+			this.inputsubmit = document.createElement( 'button' );
+			this.inputsubmit.className = 'nl-field-go';
+			this.inputsubmit.innerHTML = 'Go';
+			this.getinputWrapper.appendChild( this.getinput );
+			this.getinputWrapper.appendChild( this.inputsubmit );
+			this.example = document.createElement( 'li' );
+			this.example.className = 'nl-ti-example';
+			this.example.innerHTML = this.elOriginal.getAttribute( 'data-subline' );
+			this.optionsList.appendChild( this.getinputWrapper );
+			this.optionsList.appendChild( this.example );
+			this.fld.appendChild( this.toggle );
+			this.fld.appendChild( this.optionsList );
+			this.elOriginal.parentNode.insertBefore( this.fld, this.elOriginal );
+			this.elOriginal.style.display = 'none';
+		},
+		_initEvents : function() {
+			var self = this;
+			this.toggle.addEventListener( 'click', function( ev ) { ev.preventDefault(); ev.stopPropagation(); self._open(); } );
+			this.toggle.addEventListener( 'touchstart', function( ev ) { ev.preventDefault(); ev.stopPropagation(); self._open(); } );
+
+			if( this.type === 'dropdown' ) {
+				var opts = Array.prototype.slice.call( this.optionsList.querySelectorAll( 'li' ) );
+				opts.forEach( function( el, i ) {
+					el.addEventListener( 'click', function( ev ) { ev.preventDefault(); self.close( el, opts.indexOf( el ) ); } );
+					el.addEventListener( 'touchstart', function( ev ) { ev.preventDefault(); self.close( el, opts.indexOf( el ) ); } );
+				} );
+			}
+			else if( this.type === 'input' ) {
+				this.getinput.addEventListener( 'keydown', function( ev ) {
+					if ( ev.keyCode == 13 ) {
+						self.close();
+					}
+				} );
+				this.inputsubmit.addEventListener( 'click', function( ev ) { ev.preventDefault(); self.close(); } );
+				this.inputsubmit.addEventListener( 'touchstart', function( ev ) { ev.preventDefault(); self.close(); } );
+			}
+
+		},
+		_open : function() {
+			if( this.open ) {
+				return false;
+			}
+			this.open = true;
+			this.form.fldOpen = this.pos;
+			var self = this;
+			this.fld.className += ' nl-field-open';
+		},
+		close : function( opt, idx ) {
+			if( !this.open ) {
+				return false;
+			}
+			this.open = false;
+			this.form.fldOpen = -1;
+			this.fld.className = this.fld.className.replace(/\b nl-field-open\b/,'');
+
+			if( this.type === 'dropdown' ) {
+				if( opt ) {
+					// remove class nl-dd-checked from previous option
+					var selectedopt = this.optionsList.children[ this.selectedIdx ];
+					selectedopt.className = '';
+					opt.className = 'nl-dd-checked';
+					this.toggle.innerHTML = opt.innerHTML;
+					// update selected index value
+					this.selectedIdx = idx;
+					// update original select element´s value
+					this.elOriginal.value = this.elOriginal.children[ this.selectedIdx ].value;
+				}
+			}
+			else if( this.type === 'input' ) {
+				this.getinput.blur();
+				this.toggle.innerHTML = this.getinput.value.trim() !== '' ? this.getinput.value : this.getinput.getAttribute( 'placeholder' );
+				this.elOriginal.value = this.getinput.value;
+			}
+		}
+	}
+
+	// add to global namespace
+	window.NLForm = NLForm;
+		var nlform = new NLForm( document.getElementById( 'nl-form' ) );
+
+} ]]></client_script>
+        <controller_as>c</controller_as>
+        <css>/*
+@font-face {
+	font-family: 'nlicons';
+	src:url('../fonts/nlicons/nlicons.eot');
+	src:url('../fonts/nlicons/nlicons.eot?#iefix') format('embedded-opentype'),
+		url('../fonts/nlicons/nlicons.woff') format('woff'),
+		url('../fonts/nlicons/nlicons.ttf') format('truetype'),
+		url('../fonts/nlicons/nlicons.svg#nlicons') format('svg');
+	font-weight: normal;
+	font-style: normal;
+}
+*/
+/* general style for the form */
+.nl-form {
+	width: 100%;
+	margin: 0.3em auto 0 auto;
+	font-size: 4em;
+	line-height: 1.5;
+}
+
+.nl-form ul {
+	list-style: none;
+	margin: 0;
+	padding: 0;
+}
+
+/* normalize the input elements, make them look like everything else */
+.nl-form input,
+.nl-form select,
+.nl-form button {
+	border: none;
+	background: transparent;
+	font-family: inherit;
+	font-size: inherit;
+	color: inherit;
+	font-weight: inherit;
+	line-height: inherit;
+	display: inline-block;
+	padding: 0;
+	margin: 0;
+	-webkit-appearance: none;
+	-moz-appearance: none;
+}
+
+.nl-form input:focus {
+	outline: none;
+}
+
+/* custom field (drop-down, text element) styling  */
+.nl-field {
+	display: inline-block;
+	position: relative;
+}
+
+.nl-field.nl-field-open {
+	z-index: 10000;
+}
+
+/* the toggle is the visible part in the form */
+.nl-field-toggle,
+.nl-form input,
+.nl-form select  {
+	line-height: inherit;
+	display: inline-block;
+	color: #b14943;
+	cursor: pointer;
+	border-bottom: 1px dashed #b14943;
+}
+
+/* drop-down list / text element */
+.nl-field ul {
+	position: absolute;
+	visibility: hidden;
+	background: #e11e25;
+	left: -0.5em;
+	top: 50%;
+	font-size: 80%;
+	opacity: 0;
+	-webkit-transform: translateY(-40%) scale(0.9);
+	-moz-transform: translateY(-40%) scale(0.9);
+	transform: translateY(-40%) scale(0.9);
+	-webkit-transition: visibility 0s 0.3s, opacity 0.3s, -webkit-transform 0.3s;
+	-moz-transition: visibility 0s 0.3s, opacity 0.3s, -moz-transform 0.3s;
+	transition: visibility 0s 0.3s, opacity 0.3s, transform 0.3s;
+}
+
+.nl-field.nl-field-open ul {
+	visibility: visible;
+	opacity: 1;
+	-webkit-transform: translateY(-50%) scale(1);
+	-moz-transform: translateY(-50%) scale(1);
+	transform: translateY(-50%) scale(1);
+	-webkit-transition: visibility 0s 0s, opacity 0.3s, -webkit-transform 0.3s;
+	-moz-transition: visibility 0s 0s, opacity 0.3s, -moz-transform 0.3s;
+	transition: visibility 0s 0s, opacity 0.3s, transform 0.3s;
+}
+
+.nl-field ul li {
+	color: #fff;
+	position: relative;
+}
+
+.nl-dd ul li {
+	padding: 0 1.5em 0 0.5em;
+	cursor: pointer;
+	white-space: nowrap;
+}
+
+.nl-dd ul li.nl-dd-checked {
+	color: #478982;
+}
+
+.no-touch .nl-dd ul li:hover {
+	background: rgba(0,0,0,0.05);
+}
+
+.no-touch .nl-dd ul li:hover:active {
+	color: #478982;
+}
+
+/* icons for some elements */
+.nl-dd ul li.nl-dd-checked:before,
+.nl-submit:before,
+.nl-field-go:before {
+	font-family: 'nlicons';
+	speak: none;
+	font-style: normal;
+	font-weight: normal;
+	font-variant: normal;
+	text-transform: none;
+	-webkit-font-smoothing: antialiased;
+}
+
+.nl-dd ul li.nl-dd-checked:before {
+	content: "\2713";
+	position: absolute;
+	right: 1em;
+	font-size: 50%;
+	line-height: 3;
+}
+
+.nl-ti-text ul {
+	min-width: 8em;
+}
+
+.nl-ti-text ul li.nl-ti-input input {
+	width: 100%;
+	padding: 0.2em 2em 0.2em 0.5em;
+	border-bottom: none;
+	color: #fff;
+}
+
+.nl-form .nl-field-go {
+	position: absolute;
+	right: 0;
+	top: 0;
+	height: 100%;
+	cursor: pointer;
+	background: rgba(0,0,0,0.1);
+	width: 1.8em;
+	text-align: center;
+	color: transparent;
+}
+
+.nl-field-go:before {
+	content: "\e001";
+	font-size: 75%;
+	color: #fff;
+	width: 100%;
+	line-height: 2.5;
+	display: block;
+}
+
+/* custom placeholder color */
+input::-webkit-input-placeholder {
+	color: rgba(255,255,255,0.8);
+}
+
+input:active::-webkit-input-placeholder ,
+input:focus::-webkit-input-placeholder {
+	color: rgba(255,255,255,0.2);
+}
+
+input::-moz-placeholder {
+	color: rgba(255,255,255,0.8);
+}
+
+input:active::-moz-placeholder,
+input:focus::-moz-placeholder {
+	color: rgba(255,255,255,0.2);
+}
+
+input:-ms-input-placeholder {  
+	color: rgba(255,255,255,0.8);
+}
+
+input:active::-ms-input-placeholder ,
+input:focus::-ms-input-placeholder {
+	color: rgba(255,255,255,0.2);
+}
+
+/* example field below text input */
+.nl-ti-text ul li.nl-ti-example {
+	font-size: 40%;
+	font-style: italic;
+	font-weight: 400;
+	padding: 0.4em 1em;
+	color: rgba(0,0,0,0.2);
+	border-top: 1px dashed rgba(255,255,255,0.7);
+}
+
+.nl-ti-text ul li.nl-ti-example em {
+	color: #fff
+}
+
+/* submit button */
+.nl-submit-wrap {
+	margin-top: 0.4em;
+}
+
+.nl-form .nl-submit {
+	line-height: 3;
+	text-transform: uppercase;
+	cursor: pointer;
+	position: relative;
+	background: #e11e25;
+	color: #fff;
+	padding: 0 1em 0 1em;
+	font-size: 40%;
+	font-weight: bold;
+	letter-spacing: 3px;
+}
+/*
+.nl-submit:before {
+	content: "\e001";
+	color: #e11e25;
+	float: left;
+	padding: 0 0.7em;
+	margin: 0 0.8em 0 0;
+	background: #69B1A9;
+}
+*/
+.no-touch .nl-form .nl-submit:hover,
+.no-touch .nl-form .nl-submit:active {
+	background: #69B1A9;
+}
+
+.no-touch .nl-form .nl-submit:hover:before {
+	background: #58a199;
+}
+
+/* overlay becomes visible when a field is opened */
+.nl-overlay {
+	position: fixed;
+	top: 0;
+	left: 0;
+	width: 100%;
+	height: 100%;
+	background: rgba(0,0,0,0.5);
+	opacity: 0;
+	z-index: 9999;
+	visibility: hidden;
+	-webkit-transition: visibility 0s 0.3s, opacity 0.3s;
+	-moz-transition: visibility 0s 0.3s, opacity 0.3s;
+	transition: visibility 0s 0.3s, opacity 0.3s;
+}
+
+.nl-field.nl-field-open ~ .nl-overlay {
+	opacity: 1;
+	visibility: visible;
+	-webkit-transition-delay: 0s;
+	-moz-transition-delay: 0s;
+	transition-delay: 0s;
+}
+
+@media screen and (max-width: 45em) {
+	.nl-form {
+		font-size: 3em;
+	}
+}
+
+@media screen and (max-width: 25em) {
+	.nl-form {
+		font-size: 2em;
+	}
+}
+
+
+/* General Demo Style */
+@import url(http://fonts.googleapis.com/css?family=Lato:300,400,700);
+/*
+@font-face {
+	font-family: 'codropsicons';
+	src:url('../fonts/codropsicons/codropsicons.eot');
+	src:url('../fonts/codropsicons/codropsicons.eot?#iefix') format('embedded-opentype'),
+		url('../fonts/codropsicons/codropsicons.woff') format('woff'),
+		url('../fonts/codropsicons/codropsicons.ttf') format('truetype'),
+		url('../fonts/codropsicons/codropsicons.svg#codropsicons') format('svg');
+	font-weight: normal;
+	font-style: normal;
+}
+*/
+*, *:after, *:before { -webkit-box-sizing: border-box; -moz-box-sizing: border-box; box-sizing: border-box; }
+body, html { font-size: 100%; padding: 0; margin: 0;}
+
+/* Clearfix hack by Nicolas Gallagher: http://nicolasgallagher.com/micro-clearfix-hack/ */
+.clearfix:before, .clearfix:after { content: " "; display: table; }
+.clearfix:after { clear: both; }
+
+body {
+	font-family: 'Lato', Calibri, Arial, sans-serif;
+	color: #ffe8e7;
+	background: #E96D65;
+	font-weight: 300;
+	overflow-x: hidden;
+}
+
+a {
+	color: #888;
+	text-decoration: none;
+}
+
+a:hover,
+a:active {
+	color: #333;
+}
+
+/* Header Style */
+.main,
+.container &gt; header {
+	margin: 0 auto;
+	padding: 2em;
+}
+
+.container &gt; header {
+	text-align: center;
+	background: rgba(0,0,0,0.01);
+}
+
+.container &gt; header h1 {
+	font-size: 2.625em;
+	line-height: 1.3;
+	margin: 0;
+	font-weight: 300;
+}
+
+.container &gt; header span {
+	display: block;
+	font-size: 60%;
+	color: #b14943;
+	padding: 0 0 0.6em 0.1em;
+}
+
+/* Main Content */
+.main {
+	max-width: 50em;
+}
+
+/* To Navigation Style */
+.codrops-top {
+	background: #fff;
+	background: rgba(255, 255, 255, 0.4);
+	text-transform: uppercase;
+	width: 100%;
+	font-size: 0.69em;
+	line-height: 2.2;
+}
+
+.codrops-top a {
+	padding: 0 1em;
+	letter-spacing: 0.1em;
+	color: #E96D65;
+	font-weight: 700;
+	display: inline-block;
+}
+
+.codrops-top a:hover {
+	background: rgba(255,255,255,0.5);
+	color: #bd4a43;
+}
+
+.codrops-top span.right {
+	float: right;
+}
+
+.codrops-top span.right a {
+	float: left;
+	display: block;
+}
+
+.codrops-icon:before {
+	font-family: 'codropsicons';
+	margin: 0 4px;
+	speak: none;
+	font-style: normal;
+	font-weight: normal;
+	font-variant: normal;
+	text-transform: none;
+	line-height: 1;
+	-webkit-font-smoothing: antialiased;
+}
+
+.codrops-icon-drop:before {
+	content: "\e001";
+}
+
+.codrops-icon-prev:before {
+	content: "\e004";
+}
+
+.codrops-icon-archive:before {
+	content: "\e002";
+}
+
+.codrops-icon-next:before {
+	content: "\e000";
+}
+
+.codrops-icon-about:before {
+	content: "\e003";
+}
+
+@media screen and (max-width: 25em) {
+
+	.codrops-icon span {
+		display: none;
+	}
+
+}</css>
+        <data_table>sp_instance</data_table>
+        <demo_data/>
+        <description/>
+        <docs/>
+        <field_list/>
+        <has_preview>false</has_preview>
+        <id>natural_language_search_form</id>
+        <internal>false</internal>
+        <link/>
+        <name>Natural Language Search Form</name>
+        <option_schema/>
+        <public>false</public>
+        <roles/>
+        <script><![CDATA[(function() {  /* populate the 'data' object */  /* e.g., data.table = $sp.getValue('table'); */})();]]></script>
+        <servicenow>false</servicenow>
+        <sys_class_name>sp_widget</sys_class_name>
+        <sys_created_by>admin</sys_created_by>
+        <sys_created_on>2018-02-11 16:40:14</sys_created_on>
+        <sys_id>8257b6dcdb18d300ff4cf27eaf9619e1</sys_id>
+        <sys_mod_count>50</sys_mod_count>
+        <sys_name>Natural Language Search Form</sys_name>
+        <sys_package display_value="NaturalInterview" source="x_snc_naturalinter">3298a0c3db005300ff4cf27eaf961912</sys_package>
+        <sys_policy/>
+        <sys_scope display_value="NaturalInterview">3298a0c3db005300ff4cf27eaf961912</sys_scope>
+        <sys_update_name>sp_widget_8257b6dcdb18d300ff4cf27eaf9619e1</sys_update_name>
+        <sys_updated_by>admin</sys_updated_by>
+        <sys_updated_on>2018-02-12 00:41:17</sys_updated_on>
+        <template><![CDATA[<div class="container demo-1">
+			<div class="main clearfix">
+				<form id="nl-form" class="nl-form">
+					I need a 
+					<select>
+						<option value="1" selected>solution</option>
+						<option value="2">solution win</option>
+					</select>
+					 for 
+					<select>
+						<option value="1" selected>any industry</option>
+						<option value="2">ind1</option>
+						<option value="3">ind2</option>
+					</select>
+					and 
+					<select>
+						<option value="1" selected>any product</option>
+					 	<option value="1">p1</option>
+					 	<option value="2">p2.</option>
+					 	<option value="3">p3</option>
+					</select>
+					<div class="nl-submit-wrap">
+						<button class="nl-submit" type="submit">Find it!</button>
+					</div>
+					<div class="nl-overlay"></div>
+				</form>
+			</div>
+		</div><!-- /container -->]]></template>
+    </sp_widget>
+</record_update>
